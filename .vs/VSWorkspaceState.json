@@ -9,8 +9,8 @@
     "\\src\\main\\java\\com\\itm\\edu",
     "\\src\\main\\java\\com\\itm\\edu\\co",
     "\\src\\main\\java\\com\\itm\\edu\\co\\ProyectoPP_2026",
-    "\\src\\main\\java\\com\\itm\\edu\\co\\ProyectoPP_2026\\Controllers"
+    "\\src\\main\\java\\com\\itm\\edu\\co\\ProyectoPP_2026\\Repositories"
   ],
-  "SelectedNode": "\\src\\main\\java\\com\\itm\\edu\\co\\ProyectoPP_2026\\Controllers\\RegistroHorasController.java",
+  "SelectedNode": "\\src\\main\\java\\com\\itm\\edu\\co\\ProyectoPP_2026\\Repositories\\PostulacionOfertaRepository.java",
   "PreviewInSolutionExplorer": false
 }

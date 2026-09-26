@@ -1,7 +1,6 @@
 package com.itm.edu.co.ProyectoPP_2026.Repositories;
 
 import com.itm.edu.co.ProyectoPP_2026.Identities.Certificado;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -11,17 +10,12 @@ import java.util.List;
 @Repository
 public class CertificadoRepository {
 
-    @Value("${spring.datasource.url}")
-    private String dbUrl;
-
-    @Value("${spring.datasource.username}")
-    private String dbUser;
-
-    @Value("${spring.datasource.password}")
-    private String dbPassword;
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/presupuesto_participativo?useSSL=false&serverTimezone=UTC";
+    private static final String DB_USER = "root";
+    private static final String DB_PASSWORD = "";
 
     private Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+        return DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
     }
 
     public List<Certificado> findAll() {
