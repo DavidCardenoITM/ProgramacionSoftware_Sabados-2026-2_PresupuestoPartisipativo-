@@ -26,7 +26,7 @@ public class Conexion {
             //"jdbc:sqlserver://localhost:1433;databaseName=TuBaseDeDatos;user=TuUsuario;password=TuContraseña";
             //Connection connection = DriverManager.getConnection(url)
             //jdbc:oracle:thin:@//localhost:1521/xe
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/labor_social", "root", "admin");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/labor_social", "root", "Administrador.");
         } catch (SQLException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex);

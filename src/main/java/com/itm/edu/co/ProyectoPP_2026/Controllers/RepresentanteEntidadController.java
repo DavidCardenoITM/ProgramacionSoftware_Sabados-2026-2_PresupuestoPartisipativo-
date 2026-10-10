@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/representantes")
-public class RepresentanteEntidadController {
+public class RepresentanteEntidadController implements RepresentanteEntidadApi{
 
     private final RepresentanteEntidadService service;
 
@@ -18,7 +18,7 @@ public class RepresentanteEntidadController {
         this.service = service;
     }
 
-    @GetMapping("/listar")
+    //@GetMapping("/listar")
     public ResponseEntity<List<RepresentanteEntidad>> listarRepresentante(){
         ResponseEntity<List<RepresentanteEntidad>> responseEntity;
         List<RepresentanteEntidad> representantes = service.listaRepresentante();
@@ -35,7 +35,7 @@ public class RepresentanteEntidadController {
         return responseEntity;
     }
 
-    @GetMapping("/listar/{id}")
+    //@GetMapping("/listar/{id}")
     public ResponseEntity<RepresentanteEntidad> listarRepresentanteId(@PathVariable Integer id){
         if (id == null || id < 0) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -50,7 +50,7 @@ public class RepresentanteEntidadController {
         return new ResponseEntity(representante, HttpStatus.OK);
     }
 
-    @PostMapping("/insertar")
+    //@PostMapping("/insertar")
     public ResponseEntity<RepresentanteEntidad> insertarRepresentante(@RequestBody RepresentanteEntidad representante){
         if(representante == null || representante.getIdUsuario() == null || representante.getIdEntidad() == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -65,7 +65,7 @@ public class RepresentanteEntidadController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @PutMapping("/actualizar")
+    //@PutMapping("/actualizar")
     public ResponseEntity<RepresentanteEntidad> actualizarRepresentante(@RequestBody RepresentanteEntidad representante){
         if(representante == null || representante.getId() == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -77,7 +77,7 @@ public class RepresentanteEntidadController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @DeleteMapping("/eliminar/{id}")
+    //@DeleteMapping("/eliminar/{id}")
     public ResponseEntity<Boolean> eliminarRepresentante(@PathVariable Integer id){
         if(id == null || id < 0){
             return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);

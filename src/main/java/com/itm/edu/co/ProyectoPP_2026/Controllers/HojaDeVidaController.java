@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/hojas-de-vida")
-public class HojaDeVidaController {
+public class HojaDeVidaController implements  HojaDeVidaApi{
 
     private final HojaDeVidaService service;
 
@@ -18,7 +18,7 @@ public class HojaDeVidaController {
         this.service = service;
     }
 
-    @GetMapping("/listar")
+    //@GetMapping("/listar")
     public ResponseEntity<List<HojaDeVida>> listarHojaDeVida() {
         ResponseEntity<List<HojaDeVida>> responseEntity;
         List<HojaDeVida> hojas = service.listaHojaDeVida();
@@ -34,7 +34,7 @@ public class HojaDeVidaController {
         return responseEntity;
     }
 
-    @GetMapping("/listar/{id}")
+    //@GetMapping("/listar/{id}")
     public ResponseEntity<HojaDeVida> listarHojaDeVidaId(@PathVariable Integer id) {
         if (id == null || id < 0) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -50,7 +50,7 @@ public class HojaDeVidaController {
     }
 
     /** Relación 1:1 con Estudiante: cada estudiante consulta su propia hoja de vida. */
-    @GetMapping("/listar/estudiante/{idEstudiante}")
+    //@GetMapping("/listar/estudiante/{idEstudiante}")
     public ResponseEntity<HojaDeVida> listarHojaDeVidaPorEstudiante(@PathVariable Integer idEstudiante) {
         if (idEstudiante == null || idEstudiante < 0) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -65,7 +65,7 @@ public class HojaDeVidaController {
         return new ResponseEntity(hoja, HttpStatus.OK);
     }
 
-    @PostMapping("/insertar")
+    //@PostMapping("/insertar")
     public ResponseEntity<HojaDeVida> insertarHojaDeVida(@RequestBody HojaDeVida hoja) {
         if (hoja == null || hoja.getIdEstudiante() == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

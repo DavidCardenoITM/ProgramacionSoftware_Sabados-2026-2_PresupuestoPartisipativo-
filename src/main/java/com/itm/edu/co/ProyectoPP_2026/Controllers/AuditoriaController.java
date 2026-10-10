@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/auditorias")
-public class AuditoriaController {
+public class AuditoriaController implements AuditoriaApi{
 
     private final AuditoriaService service;
 
@@ -18,7 +18,7 @@ public class AuditoriaController {
         this.service = service;
     }
 
-    @GetMapping("/listar")
+    //@GetMapping("/listar")
     public ResponseEntity<List<Auditoria>> listarAuditoria(){
         ResponseEntity<List<Auditoria>> responseEntity;
         List<Auditoria> auditorias = service.listaAuditoria();
@@ -35,7 +35,7 @@ public class AuditoriaController {
         return responseEntity;
     }
 
-    @GetMapping("/listar/{id}")
+    //@GetMapping("/listar/{id}")
     public ResponseEntity<Auditoria> listarAuditoriaId(@PathVariable Integer id){
         if (id == null || id < 0) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -50,7 +50,7 @@ public class AuditoriaController {
         return new ResponseEntity(auditoria, HttpStatus.OK);
     }
 
-    @PostMapping("/insertar")
+    //@PostMapping("/insertar")
     public ResponseEntity<Auditoria> insertarAuditoria(@RequestBody Auditoria auditoria){
         if(auditoria == null || auditoria.getIdUsuario() == null || auditoria.getAccion() == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
