@@ -1,6 +1,7 @@
 package com.itm.edu.co.ProyectoPP_2026.Controllers;
 
 import com.itm.edu.co.ProyectoPP_2026.Identities.RepresentanteEntidad;
+import com.itm.edu.co.ProyectoPP_2026.Services.Interface.RepresentanteEntidadServiceInterface;
 import com.itm.edu.co.ProyectoPP_2026.Services.RepresentanteEntidadService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,9 +13,9 @@ import java.util.List;
 @RequestMapping("/representantes")
 public class RepresentanteEntidadController implements RepresentanteEntidadApi{
 
-    private final RepresentanteEntidadService service;
+    private final RepresentanteEntidadServiceInterface service;
 
-    public RepresentanteEntidadController(RepresentanteEntidadService service) {
+    public RepresentanteEntidadController(RepresentanteEntidadServiceInterface service) {
         this.service = service;
     }
 

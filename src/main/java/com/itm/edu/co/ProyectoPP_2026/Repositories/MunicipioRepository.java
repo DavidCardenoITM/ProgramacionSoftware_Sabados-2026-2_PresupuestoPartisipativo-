@@ -1,6 +1,7 @@
 package com.itm.edu.co.ProyectoPP_2026.Repositories;
 
 import com.itm.edu.co.ProyectoPP_2026.Identities.Municipio;
+import com.itm.edu.co.ProyectoPP_2026.Repositories.Interfaces.MunicipioRepositoryInterface;
 import com.itm.edu.co.ProyectoPP_2026.Utilities.Conexion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class MunicipioRepository {
+public class MunicipioRepository implements MunicipioRepositoryInterface {
 
     @Autowired
     private MunicipioRepositoryDAOHelper helper;

@@ -1,6 +1,7 @@
 package com.itm.edu.co.ProyectoPP_2026.Repositories;
 
 import com.itm.edu.co.ProyectoPP_2026.Identities.EntidadReceptora;
+import com.itm.edu.co.ProyectoPP_2026.Repositories.Interfaces.EntidadReceptoraRepositoryInterface;
 import com.itm.edu.co.ProyectoPP_2026.Utilities.Conexion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class EntidadReceptoraRepository {
+public class EntidadReceptoraRepository implements EntidadReceptoraRepositoryInterface {
 
     @Autowired
     private EntidadReceptoraRepositoryDAOHelper helper;

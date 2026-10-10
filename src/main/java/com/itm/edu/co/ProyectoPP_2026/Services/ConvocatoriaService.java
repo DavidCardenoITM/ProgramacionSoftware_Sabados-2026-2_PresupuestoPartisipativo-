@@ -2,15 +2,17 @@ package com.itm.edu.co.ProyectoPP_2026.Services;
 
 import com.itm.edu.co.ProyectoPP_2026.Identities.Convocatoria;
 import com.itm.edu.co.ProyectoPP_2026.Repositories.ConvocatoriaRepository;
+import com.itm.edu.co.ProyectoPP_2026.Repositories.Interfaces.ConvocatoriaRepositoryInterface;
+import com.itm.edu.co.ProyectoPP_2026.Services.Interface.ConvocatoriaServiceInterface;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ConvocatoriaService {
-    private final ConvocatoriaRepository repository;
+public class ConvocatoriaService implements ConvocatoriaServiceInterface {
+    private final ConvocatoriaRepositoryInterface repository;
 
-    public ConvocatoriaService(ConvocatoriaRepository repository) {
+    public ConvocatoriaService(ConvocatoriaRepositoryInterface repository) {
         this.repository = repository;
     }
 

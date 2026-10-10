@@ -1,6 +1,7 @@
 package com.itm.edu.co.ProyectoPP_2026.Repositories;
 
 import com.itm.edu.co.ProyectoPP_2026.Identities.PostulacionConvocatoria;
+import com.itm.edu.co.ProyectoPP_2026.Repositories.Interfaces.PostulacionConvocatoriaRepositoryInterface;
 import com.itm.edu.co.ProyectoPP_2026.Utilities.Conexion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class PostulacionConvocatoriaRepository {
+public class PostulacionConvocatoriaRepository implements PostulacionConvocatoriaRepositoryInterface {
 
     @Autowired
     private PostulacionConvocatoriaRepositoryDAOHelper helper;

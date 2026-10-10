@@ -1,6 +1,7 @@
 package com.itm.edu.co.ProyectoPP_2026.Repositories;
 
 import com.itm.edu.co.ProyectoPP_2026.Identities.EstudianteHabilidad;
+import com.itm.edu.co.ProyectoPP_2026.Repositories.Interfaces.EstudianteHabilidadRepositoryInterface;
 import com.itm.edu.co.ProyectoPP_2026.Utilities.Conexion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,7 +20,7 @@ import java.util.List;
  * eliminar(...) recibiendo ambas claves.
  */
 @Repository
-public class EstudianteHabilidadRepository {
+public class EstudianteHabilidadRepository  implements EstudianteHabilidadRepositoryInterface {
 
     @Autowired
     private EstudianteHabilidadRepositoryDAOHelper helper;

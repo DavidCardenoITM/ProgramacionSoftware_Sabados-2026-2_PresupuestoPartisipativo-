@@ -2,15 +2,17 @@ package com.itm.edu.co.ProyectoPP_2026.Services;
 
 import com.itm.edu.co.ProyectoPP_2026.Identities.EntidadReceptora;
 import com.itm.edu.co.ProyectoPP_2026.Repositories.EntidadReceptoraRepository;
+import com.itm.edu.co.ProyectoPP_2026.Repositories.Interfaces.EntidadReceptoraRepositoryInterface;
+import com.itm.edu.co.ProyectoPP_2026.Services.Interface.EntidadReceptoraServiceInterface;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class EntidadReceptoraService {
-    private final EntidadReceptoraRepository repository;
+public class EntidadReceptoraService implements EntidadReceptoraServiceInterface {
+    private final EntidadReceptoraRepositoryInterface repository;
 
-    public EntidadReceptoraService(EntidadReceptoraRepository repository) {
+    public EntidadReceptoraService(EntidadReceptoraRepositoryInterface repository) {
         this.repository = repository;
     }
 

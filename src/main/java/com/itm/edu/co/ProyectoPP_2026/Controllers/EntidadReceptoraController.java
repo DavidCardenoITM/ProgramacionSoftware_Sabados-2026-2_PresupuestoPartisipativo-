@@ -2,6 +2,7 @@ package com.itm.edu.co.ProyectoPP_2026.Controllers;
 
 import com.itm.edu.co.ProyectoPP_2026.Identities.EntidadReceptora;
 import com.itm.edu.co.ProyectoPP_2026.Services.EntidadReceptoraService;
+import com.itm.edu.co.ProyectoPP_2026.Services.Interface.EntidadReceptoraServiceInterface;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,9 +13,9 @@ import java.util.List;
 @RequestMapping("/entidades")
 public class EntidadReceptoraController implements  EntidadReceptoraApi{
 
-    private final EntidadReceptoraService service;
+    private final EntidadReceptoraServiceInterface service;
 
-    public EntidadReceptoraController(EntidadReceptoraService service) {
+    public EntidadReceptoraController(EntidadReceptoraServiceInterface service) {
         this.service = service;
     }
 

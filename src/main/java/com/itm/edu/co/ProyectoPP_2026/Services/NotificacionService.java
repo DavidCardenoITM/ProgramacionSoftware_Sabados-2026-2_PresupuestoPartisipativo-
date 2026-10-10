@@ -1,16 +1,18 @@
 package com.itm.edu.co.ProyectoPP_2026.Services;
 
 import com.itm.edu.co.ProyectoPP_2026.Identities.Notificacion;
+import com.itm.edu.co.ProyectoPP_2026.Repositories.Interfaces.NotificacionRepositoryInterface;
 import com.itm.edu.co.ProyectoPP_2026.Repositories.NotificacionRepository;
+import com.itm.edu.co.ProyectoPP_2026.Services.Interface.NotificacionServiceInterface;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class NotificacionService {
-    private final NotificacionRepository repository;
+public class NotificacionService implements NotificacionServiceInterface {
+    private final NotificacionRepositoryInterface repository;
 
-    public NotificacionService(NotificacionRepository repository) {
+    public NotificacionService(NotificacionRepositoryInterface repository) {
         this.repository = repository;
     }
 
@@ -21,7 +23,6 @@ public class NotificacionService {
     public Notificacion listarPorId(Integer id) {
         return repository.listarPorId(id);
     }
-
 
     public Notificacion insertarNotificacion(Notificacion notificacion){
         return repository.insertarNotificacion(notificacion);
