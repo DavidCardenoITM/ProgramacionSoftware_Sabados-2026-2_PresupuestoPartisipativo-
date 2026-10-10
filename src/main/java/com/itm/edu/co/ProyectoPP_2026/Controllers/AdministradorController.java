@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/administradores")
-public class AdministradorController {
+public class AdministradorController implements AdministradorApi{
 
     private final AdministradorService service;
 
@@ -18,7 +18,7 @@ public class AdministradorController {
         this.service = service;
     }
 
-    @GetMapping("/listar")
+    //@GetMapping("/listar")
     public ResponseEntity<List<Administrador>> listarAdministrador(){
         ResponseEntity<List<Administrador>> responseEntity;
         List<Administrador> administradores = service.listaAdministrador();
@@ -35,7 +35,7 @@ public class AdministradorController {
         return responseEntity;
     }
 
-    @GetMapping("/listar/{id}")
+    //@GetMapping("/listar/{id}")
     public ResponseEntity<Administrador> listarAdministradorId(@PathVariable Integer id){
         if (id == null || id < 0) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -50,7 +50,7 @@ public class AdministradorController {
         return new ResponseEntity(administrador, HttpStatus.OK);
     }
 
-    @PostMapping("/insertar")
+    //@PostMapping("/insertar")
     public ResponseEntity<Administrador> insertarAdministrador(@RequestBody Administrador administrador){
         if(administrador == null || administrador.getIdUsuario() == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -65,7 +65,7 @@ public class AdministradorController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @PutMapping("/actualizar")
+    //@PutMapping("/actualizar")
     public ResponseEntity<Administrador> actualizarAdministrador(@RequestBody Administrador administrador){
         if(administrador == null || administrador.getId() == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -77,7 +77,7 @@ public class AdministradorController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @DeleteMapping("/eliminar/{id}")
+    //@DeleteMapping("/eliminar/{id}")
     public ResponseEntity<Boolean> eliminarAdministrador(@PathVariable Integer id){
         if(id == null || id < 0){
             return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);

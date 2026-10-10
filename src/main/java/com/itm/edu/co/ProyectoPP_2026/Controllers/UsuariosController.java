@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/usuarios")
-public class UsuariosController {
+public class UsuariosController implements UsuariosApi{
 
     private final UsuariosService service;
 
@@ -19,7 +19,7 @@ public class UsuariosController {
         this.service = service;
     }
 
-    @GetMapping("/listar")
+    //@GetMapping("/listar")
     public ResponseEntity<List<Usuarios>> listarUsuario(){
         ResponseEntity<List<Usuarios>> responseEntity;
         List<Usuarios> personas = service.listaUsuario();
@@ -36,7 +36,7 @@ public class UsuariosController {
         return responseEntity;
     }
 
-    @GetMapping("/listar/{id}")
+    //@GetMapping("/listar/{id}")
     public ResponseEntity<Usuarios> listarUsuarioId(@PathVariable Integer id){
         Usuarios user = service.listarPorId(id);
         if (id == null || id < 0) {
@@ -51,7 +51,7 @@ public class UsuariosController {
         return new ResponseEntity(user, HttpStatus.OK);
     }
 
-    @PostMapping("/insertar")
+    //@PostMapping("/insertar")
     public ResponseEntity<Usuarios> insertarUsuario(@RequestBody Usuarios usuario){
         if(usuario == null || usuario.getCorreo() == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -66,7 +66,7 @@ public class UsuariosController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @PutMapping("/actualizar")
+    //@PutMapping("/actualizar")
     public ResponseEntity<Usuarios> actualizarUsuario(@RequestBody Usuarios usuario){
         if(usuario == null || usuario.getCorreo() == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -81,7 +81,7 @@ public class UsuariosController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @PatchMapping("/corregircorreo")
+    //@PatchMapping("/corregircorreo")
     public ResponseEntity<Usuarios> corregirCorreo(@RequestParam String correo, @RequestParam String nuevoCorreo){
         if(ObjectUtils.isEmpty(correo) || ObjectUtils.isEmpty(nuevoCorreo)){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -96,7 +96,7 @@ public class UsuariosController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @DeleteMapping("/eliminar/{id}")
+    //@DeleteMapping("/eliminar/{id}")
     public ResponseEntity<Boolean> eliminarUsuario(@PathVariable Integer id){
         if(id == null || id < 0){
             return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
