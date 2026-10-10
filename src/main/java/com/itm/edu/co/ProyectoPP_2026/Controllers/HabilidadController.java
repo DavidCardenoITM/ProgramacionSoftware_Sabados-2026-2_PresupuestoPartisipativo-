@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/habilidades")
-public class HabilidadController {
+public class HabilidadController implements HabilidadApi{
 
     private final HabilidadServiceInterface service;
 
@@ -19,7 +19,7 @@ public class HabilidadController {
         this.service = service;
     }
 
-    @GetMapping("/listar")
+    //@GetMapping("/listar")
     public ResponseEntity<List<Habilidad>> listarHabilidad() {
         ResponseEntity<List<Habilidad>> responseEntity;
         List<Habilidad> habilidades = service.listaHabilidad();
@@ -35,7 +35,7 @@ public class HabilidadController {
         return responseEntity;
     }
 
-    @GetMapping("/listar/{id}")
+    //@GetMapping("/listar/{id}")
     public ResponseEntity<Habilidad> listarHabilidadId(@PathVariable Integer id) {
         if (id == null || id < 0) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -50,7 +50,7 @@ public class HabilidadController {
         return new ResponseEntity(habilidad, HttpStatus.OK);
     }
 
-    @PostMapping("/insertar")
+    //@PostMapping("/insertar")
     public ResponseEntity<Habilidad> insertarHabilidad(@RequestBody Habilidad habilidad) {
         if (habilidad == null || habilidad.getNombre() == null || habilidad.getCategoria() == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

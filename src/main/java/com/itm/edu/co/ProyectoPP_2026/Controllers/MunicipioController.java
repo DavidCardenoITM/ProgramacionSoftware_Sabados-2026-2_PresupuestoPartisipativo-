@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/municipios")
-public class MunicipioController {
+public class MunicipioController implements  MunicipioApi{
 
     private final MunicipioServiceInterface service;
 
@@ -19,7 +19,7 @@ public class MunicipioController {
         this.service = service;
     }
 
-    @GetMapping("/listar")
+    //@GetMapping("/listar")
     public ResponseEntity<List<Municipio>> listarMunicipio(){
         ResponseEntity<List<Municipio>> responseEntity;
         List<Municipio> municipios = service.listaMunicipio();
@@ -36,7 +36,7 @@ public class MunicipioController {
         return responseEntity;
     }
 
-    @GetMapping("/listar/{id}")
+    //@GetMapping("/listar/{id}")
     public ResponseEntity<Municipio> listarMunicipioId(@PathVariable Integer id){
         if (id == null || id < 0) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -51,7 +51,7 @@ public class MunicipioController {
         return new ResponseEntity(municipio, HttpStatus.OK);
     }
 
-    @PostMapping("/insertar")
+    //@PostMapping("/insertar")
     public ResponseEntity<Municipio> insertarMunicipio(@RequestBody Municipio municipio){
         if(municipio == null || municipio.getCodigoDane() == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -66,7 +66,7 @@ public class MunicipioController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @PutMapping("/actualizar")
+    //@PutMapping("/actualizar")
     public ResponseEntity<Municipio> actualizarMunicipio(@RequestBody Municipio municipio){
         if(municipio == null || municipio.getId() == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -78,7 +78,7 @@ public class MunicipioController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @DeleteMapping("/eliminar/{id}")
+    //@DeleteMapping("/eliminar/{id}")
     public ResponseEntity<Boolean> eliminarMunicipio(@PathVariable Integer id){
         if(id == null || id < 0){
             return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);

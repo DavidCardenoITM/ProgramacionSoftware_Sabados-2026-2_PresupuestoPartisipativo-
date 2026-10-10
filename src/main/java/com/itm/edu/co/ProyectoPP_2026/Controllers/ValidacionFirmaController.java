@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/validaciones-firma")
-public class ValidacionFirmaController {
+public class ValidacionFirmaController implements  ValidacionFirmaApi{
 
     private final ValidacionFirmaServiceInterface service;
 
@@ -19,7 +19,7 @@ public class ValidacionFirmaController {
         this.service = service;
     }
 
-    @GetMapping("/listar")
+    //@GetMapping("/listar")
     public ResponseEntity<List<ValidacionFirma>> listarValidacionFirma() {
         ResponseEntity<List<ValidacionFirma>> responseEntity;
         List<ValidacionFirma> validaciones = service.listaValidacionFirma();
@@ -35,7 +35,7 @@ public class ValidacionFirmaController {
         return responseEntity;
     }
 
-    @GetMapping("/listar/{id}")
+    //@GetMapping("/listar/{id}")
     public ResponseEntity<ValidacionFirma> listarValidacionFirmaId(@PathVariable Integer id) {
         if (id == null || id < 0) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -50,7 +50,7 @@ public class ValidacionFirmaController {
         return new ResponseEntity(validacion, HttpStatus.OK);
     }
 
-    @PostMapping("/insertar")
+    //@PostMapping("/insertar")
     public ResponseEntity<ValidacionFirma> insertarValidacionFirma(@RequestBody ValidacionFirma validacion) {
         if (validacion == null || validacion.getIdRegistroHoras() == null
                 || validacion.getIdRepresentante() == null || validacion.getResultado() == null) {

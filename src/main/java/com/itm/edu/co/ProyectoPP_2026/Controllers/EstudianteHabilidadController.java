@@ -16,7 +16,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/estudiante-habilidad")
-public class EstudianteHabilidadController {
+public class EstudianteHabilidadController implements EstudianteHabilidadApi{
 
     private final EstudianteHabilidadServiceInterface service;
 
@@ -24,7 +24,7 @@ public class EstudianteHabilidadController {
         this.service = service;
     }
 
-    @GetMapping("/listar")
+    //@GetMapping("/listar")
     public ResponseEntity<List<EstudianteHabilidad>> listarEstudianteHabilidad() {
         ResponseEntity<List<EstudianteHabilidad>> responseEntity;
         List<EstudianteHabilidad> lista = service.listaEstudianteHabilidad();
@@ -40,7 +40,7 @@ public class EstudianteHabilidadController {
         return responseEntity;
     }
 
-    @GetMapping("/listar/estudiante/{idEstudiante}")
+    //@GetMapping("/listar/estudiante/{idEstudiante}")
     public ResponseEntity<List<EstudianteHabilidad>> listarPorEstudiante(@PathVariable Integer idEstudiante) {
         if (idEstudiante == null || idEstudiante < 0) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -52,7 +52,7 @@ public class EstudianteHabilidadController {
         return new ResponseEntity(lista, HttpStatus.OK);
     }
 
-    @PostMapping("/insertar")
+    //@PostMapping("/insertar")
     public ResponseEntity<EstudianteHabilidad> insertarEstudianteHabilidad(@RequestBody EstudianteHabilidad eh) {
         if (eh == null || eh.getIdEstudiante() == null || eh.getIdHabilidad() == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -64,7 +64,7 @@ public class EstudianteHabilidadController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @DeleteMapping("/eliminar/{idEstudiante}/{idHabilidad}")
+    //@DeleteMapping("/eliminar/{idEstudiante}/{idHabilidad}")
     public ResponseEntity<Void> eliminarEstudianteHabilidad(@PathVariable Integer idEstudiante,
                                                             @PathVariable Integer idHabilidad) {
         if (idEstudiante == null || idHabilidad == null || idEstudiante < 0 || idHabilidad < 0) {

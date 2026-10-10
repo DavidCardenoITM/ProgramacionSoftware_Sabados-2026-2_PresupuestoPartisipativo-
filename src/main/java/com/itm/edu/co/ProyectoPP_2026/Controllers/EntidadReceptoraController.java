@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/entidades")
-public class EntidadReceptoraController {
+public class EntidadReceptoraController implements  EntidadReceptoraApi{
 
     private final EntidadReceptoraServiceInterface service;
 
@@ -19,7 +19,7 @@ public class EntidadReceptoraController {
         this.service = service;
     }
 
-    @GetMapping("/listar")
+    //@GetMapping("/listar")
     public ResponseEntity<List<EntidadReceptora>> listarEntidad(){
         ResponseEntity<List<EntidadReceptora>> responseEntity;
         List<EntidadReceptora> entidades = service.listaEntidad();
@@ -36,7 +36,7 @@ public class EntidadReceptoraController {
         return responseEntity;
     }
 
-    @GetMapping("/listar/{id}")
+    //@GetMapping("/listar/{id}")
     public ResponseEntity<EntidadReceptora> listarEntidadId(@PathVariable Integer id){
         if (id == null || id < 0) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -51,7 +51,7 @@ public class EntidadReceptoraController {
         return new ResponseEntity(entidad, HttpStatus.OK);
     }
 
-    @PostMapping("/insertar")
+    //@PostMapping("/insertar")
     public ResponseEntity<EntidadReceptora> insertarEntidad(@RequestBody EntidadReceptora entidad){
         if(entidad == null || entidad.getNit() == null || entidad.getNombre() == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -66,7 +66,7 @@ public class EntidadReceptoraController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @PutMapping("/actualizar")
+    //@PutMapping("/actualizar")
     public ResponseEntity<EntidadReceptora> actualizarEntidad(@RequestBody EntidadReceptora entidad){
         if(entidad == null || entidad.getId() == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -78,7 +78,7 @@ public class EntidadReceptoraController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @DeleteMapping("/eliminar/{id}")
+    //@DeleteMapping("/eliminar/{id}")
     public ResponseEntity<Boolean> eliminarEntidad(@PathVariable Integer id){
         if(id == null || id < 0){
             return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);

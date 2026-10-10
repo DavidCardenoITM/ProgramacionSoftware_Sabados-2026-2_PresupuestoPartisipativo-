@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/experiencias")
-public class ExperienciaController {
+public class ExperienciaController implements ExperienciaApi{
 
     private final ExperienciaServiceInterface service;
 
@@ -19,7 +19,7 @@ public class ExperienciaController {
         this.service = service;
     }
 
-    @GetMapping("/listar")
+    //@GetMapping("/listar")
     public ResponseEntity<List<Experiencia>> listarExperiencia() {
         ResponseEntity<List<Experiencia>> responseEntity;
         List<Experiencia> experiencias = service.listaExperiencia();
@@ -35,7 +35,7 @@ public class ExperienciaController {
         return responseEntity;
     }
 
-    @GetMapping("/listar/{id}")
+    //@GetMapping("/listar/{id}")
     public ResponseEntity<Experiencia> listarExperienciaId(@PathVariable Integer id) {
         if (id == null || id < 0) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -51,7 +51,7 @@ public class ExperienciaController {
     }
 
     /** Historial completo de experiencias de una hoja de vida (relación 1:N). */
-    @GetMapping("/listar/hoja-de-vida/{idHojaDeVida}")
+    //@GetMapping("/listar/hoja-de-vida/{idHojaDeVida}")
     public ResponseEntity<List<Experiencia>> listarExperienciaPorHojaDeVida(@PathVariable Integer idHojaDeVida) {
         if (idHojaDeVida == null || idHojaDeVida < 0) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -63,7 +63,7 @@ public class ExperienciaController {
         return new ResponseEntity(experiencias, HttpStatus.OK);
     }
 
-    @PostMapping("/insertar")
+    //@PostMapping("/insertar")
     public ResponseEntity<Experiencia> insertarExperiencia(@RequestBody Experiencia experiencia) {
         if (experiencia == null || experiencia.getIdHojaDeVida() == null || experiencia.getTipo() == null
                 || experiencia.getInstitucion() == null || experiencia.getCargoTitulo() == null

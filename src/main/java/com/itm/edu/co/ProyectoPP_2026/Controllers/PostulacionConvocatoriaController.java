@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/postulaciones-convocatoria")
-public class PostulacionConvocatoriaController {
+public class PostulacionConvocatoriaController implements PostulacionConvocatoriaApi{
 
     private final PostulacionConvocatoriaServiceinterface service;
 
@@ -19,7 +19,7 @@ public class PostulacionConvocatoriaController {
         this.service = service;
     }
 
-    @GetMapping("/listar")
+    //@GetMapping("/listar")
     public ResponseEntity<List<PostulacionConvocatoria>> listarPostulacion(){
         ResponseEntity<List<PostulacionConvocatoria>> responseEntity;
         List<PostulacionConvocatoria> postulaciones = service.listaPostulacion();
@@ -36,7 +36,7 @@ public class PostulacionConvocatoriaController {
         return responseEntity;
     }
 
-    @GetMapping("/listar/{id}")
+    //@GetMapping("/listar/{id}")
     public ResponseEntity<PostulacionConvocatoria> listarPostulacionId(@PathVariable Integer id){
         if (id == null || id < 0) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -51,7 +51,7 @@ public class PostulacionConvocatoriaController {
         return new ResponseEntity(postulacion, HttpStatus.OK);
     }
 
-    @PostMapping("/insertar")
+    //@PostMapping("/insertar")
     public ResponseEntity<PostulacionConvocatoria> insertarPostulacion(@RequestBody PostulacionConvocatoria postulacion){
         if(postulacion == null || postulacion.getIdEstudiante() == null || postulacion.getIdConvocatoria() == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -66,7 +66,7 @@ public class PostulacionConvocatoriaController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @PutMapping("/actualizar")
+    //@PutMapping("/actualizar")
     public ResponseEntity<PostulacionConvocatoria> actualizarPostulacion(@RequestBody PostulacionConvocatoria postulacion){
         if(postulacion == null || postulacion.getId() == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -78,7 +78,7 @@ public class PostulacionConvocatoriaController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @DeleteMapping("/eliminar/{id}")
+    //@DeleteMapping("/eliminar/{id}")
     public ResponseEntity<Boolean> eliminarPostulacion(@PathVariable Integer id){
         if(id == null || id < 0){
             return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);

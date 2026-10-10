@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/notificaciones")
-public class NotificacionController {
+public class NotificacionController implements   NotificacionApi{
 
     private final NotificacionServiceInterface service;
 
@@ -19,7 +19,7 @@ public class NotificacionController {
         this.service = service;
     }
 
-    @GetMapping("/listar")
+    //@GetMapping("/listar")
     public ResponseEntity<List<Notificacion>> listarNotificacion(){
         ResponseEntity<List<Notificacion>> responseEntity;
         List<Notificacion> notificaciones = service.listaNotificacion();
@@ -36,7 +36,7 @@ public class NotificacionController {
         return responseEntity;
     }
 
-    @GetMapping("/listar/{id}")
+    //@GetMapping("/listar/{id}")
     public ResponseEntity<Notificacion> listarNotificacionId(@PathVariable Integer id){
         if (id == null || id < 0) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -52,7 +52,7 @@ public class NotificacionController {
     }
 
 
-    @PostMapping("/insertar")
+    //@PostMapping("/insertar")
     public ResponseEntity<Notificacion> insertarNotificacion(@RequestBody Notificacion notificacion){
         if(notificacion == null || notificacion.getIdUsuario() == null || notificacion.getMensaje() == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -64,7 +64,7 @@ public class NotificacionController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @PutMapping("/actualizar")
+    //@PutMapping("/actualizar")
     public ResponseEntity<Notificacion> actualizarNotificacion(@RequestBody Notificacion notificacion){
         if(notificacion == null || notificacion.getId() == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -76,7 +76,7 @@ public class NotificacionController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @PatchMapping("/marcarleido/{id}")
+    //@PatchMapping("/marcarleido/{id}")
     public ResponseEntity<Boolean> marcarLeido(@PathVariable Integer id, @RequestParam Boolean leido){
         if(id == null || id < 0){
             return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
@@ -88,7 +88,7 @@ public class NotificacionController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @DeleteMapping("/eliminar/{id}")
+    //@DeleteMapping("/eliminar/{id}")
     public ResponseEntity<Boolean> eliminarNotificacion(@PathVariable Integer id){
         if(id == null || id < 0){
             return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);

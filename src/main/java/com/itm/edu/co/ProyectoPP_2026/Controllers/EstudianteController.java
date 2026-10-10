@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/estudiantes")
-public class EstudianteController {
+public class EstudianteController implements  EstudianteApi{
 
     private final EstudianteServiceInterface service;
 
@@ -19,7 +19,7 @@ public class EstudianteController {
         this.service = service;
     }
 
-    @GetMapping("/listar")
+    //@GetMapping("/listar")
     public ResponseEntity<List<Estudiante>> listarEstudiante(){
         ResponseEntity<List<Estudiante>> responseEntity;
         List<Estudiante> estudiantes = service.listaEstudiante();
@@ -36,7 +36,7 @@ public class EstudianteController {
         return responseEntity;
     }
 
-    @GetMapping("/listar/{id}")
+    //@GetMapping("/listar/{id}")
     public ResponseEntity<Estudiante> listarEstudianteId(@PathVariable Integer id){
         if (id == null || id < 0) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -51,7 +51,7 @@ public class EstudianteController {
         return new ResponseEntity(estudiante, HttpStatus.OK);
     }
 
-    @PostMapping("/insertar")
+    //@PostMapping("/insertar")
     public ResponseEntity<Estudiante> insertarEstudiante(@RequestBody Estudiante estudiante){
         if(estudiante == null || estudiante.getIdUsuario() == null || estudiante.getDocumentoIdentidad() == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -66,7 +66,7 @@ public class EstudianteController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @PutMapping("/actualizar")
+    //@PutMapping("/actualizar")
     public ResponseEntity<Estudiante> actualizarEstudiante(@RequestBody Estudiante estudiante){
         if(estudiante == null || estudiante.getId() == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -78,7 +78,7 @@ public class EstudianteController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @DeleteMapping("/eliminar/{id}")
+    //@DeleteMapping("/eliminar/{id}")
     public ResponseEntity<Boolean> eliminarEstudiante(@PathVariable Integer id){
         if(id == null || id < 0){
             return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);

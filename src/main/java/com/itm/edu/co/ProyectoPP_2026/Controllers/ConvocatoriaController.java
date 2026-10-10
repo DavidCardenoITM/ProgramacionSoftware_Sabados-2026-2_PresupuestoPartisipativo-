@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/convocatorias")
-public class ConvocatoriaController {
+public class ConvocatoriaController implements  ConvocatoriaApi{
 
     private final ConvocatoriaServiceInterface service;
 
@@ -19,7 +19,7 @@ public class ConvocatoriaController {
         this.service = service;
     }
 
-    @GetMapping("/listar")
+    //@GetMapping("/listar")
     public ResponseEntity<List<Convocatoria>> listarConvocatoria(){
         ResponseEntity<List<Convocatoria>> responseEntity;
         List<Convocatoria> convocatorias = service.listaConvocatoria();
@@ -36,7 +36,7 @@ public class ConvocatoriaController {
         return responseEntity;
     }
 
-    @GetMapping("/listar/{id}")
+    //@GetMapping("/listar/{id}")
     public ResponseEntity<Convocatoria> listarConvocatoriaId(@PathVariable Integer id){
         if (id == null || id < 0) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -51,7 +51,7 @@ public class ConvocatoriaController {
         return new ResponseEntity(convocatoria, HttpStatus.OK);
     }
 
-    @PostMapping("/insertar")
+    //@PostMapping("/insertar")
     public ResponseEntity<Convocatoria> insertarConvocatoria(@RequestBody Convocatoria convocatoria){
         if(convocatoria == null || convocatoria.getIdMunicipio() == null || convocatoria.getNombre() == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -66,7 +66,7 @@ public class ConvocatoriaController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @PutMapping("/actualizar")
+    //@PutMapping("/actualizar")
     public ResponseEntity<Convocatoria> actualizarConvocatoria(@RequestBody Convocatoria convocatoria){
         if(convocatoria == null || convocatoria.getId() == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -78,7 +78,7 @@ public class ConvocatoriaController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @DeleteMapping("/eliminar/{id}")
+    //@DeleteMapping("/eliminar/{id}")
     public ResponseEntity<Boolean> eliminarConvocatoria(@PathVariable Integer id){
         if(id == null || id < 0){
             return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
