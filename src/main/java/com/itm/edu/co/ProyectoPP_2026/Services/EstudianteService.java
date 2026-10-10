@@ -2,15 +2,17 @@ package com.itm.edu.co.ProyectoPP_2026.Services;
 
 import com.itm.edu.co.ProyectoPP_2026.Identities.Estudiante;
 import com.itm.edu.co.ProyectoPP_2026.Repositories.EstudianteRepository;
+import com.itm.edu.co.ProyectoPP_2026.Repositories.Interfaces.EstudianteRepositoryInterface;
+import com.itm.edu.co.ProyectoPP_2026.Services.Interface.EstudianteServiceInterface;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class EstudianteService {
-    private final EstudianteRepository repository;
+public class EstudianteService implements EstudianteServiceInterface {
+    private final EstudianteRepositoryInterface repository;
 
-    public EstudianteService(EstudianteRepository repository) {
+    public EstudianteService(EstudianteRepositoryInterface repository) {
         this.repository = repository;
     }
 

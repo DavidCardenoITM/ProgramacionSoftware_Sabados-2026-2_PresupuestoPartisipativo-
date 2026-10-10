@@ -2,6 +2,7 @@ package com.itm.edu.co.ProyectoPP_2026.Controllers;
 
 import com.itm.edu.co.ProyectoPP_2026.Identities.Auditoria;
 import com.itm.edu.co.ProyectoPP_2026.Services.AuditoriaService;
+import com.itm.edu.co.ProyectoPP_2026.Services.Interface.AuditoriaServiceInterface;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,9 +13,9 @@ import java.util.List;
 @RequestMapping("/auditorias")
 public class AuditoriaController {
 
-    private final AuditoriaService service;
+    private final AuditoriaServiceInterface service;
 
-    public AuditoriaController(AuditoriaService service) {
+    public AuditoriaController(AuditoriaServiceInterface service) {
         this.service = service;
     }
 

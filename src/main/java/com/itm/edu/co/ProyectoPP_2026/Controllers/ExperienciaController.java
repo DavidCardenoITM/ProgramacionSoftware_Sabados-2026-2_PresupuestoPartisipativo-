@@ -1,6 +1,7 @@
 package com.itm.edu.co.ProyectoPP_2026.Controllers;
 
 import com.itm.edu.co.ProyectoPP_2026.Identities.Experiencia;
+import com.itm.edu.co.ProyectoPP_2026.Services.Interface.ExperienciaServiceInterface;
 import org.springframework.http.HttpStatus;
 import com.itm.edu.co.ProyectoPP_2026.Services.ExperienciaService;
 import org.springframework.http.ResponseEntity;
@@ -12,9 +13,9 @@ import java.util.List;
 @RequestMapping("/experiencias")
 public class ExperienciaController {
 
-    private final ExperienciaService service;
+    private final ExperienciaServiceInterface service;
 
-    public ExperienciaController(ExperienciaService service) {
+    public ExperienciaController(ExperienciaServiceInterface service) {
         this.service = service;
     }
 

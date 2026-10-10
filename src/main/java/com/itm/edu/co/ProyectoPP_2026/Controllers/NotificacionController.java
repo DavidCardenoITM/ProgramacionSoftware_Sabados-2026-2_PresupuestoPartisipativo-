@@ -1,6 +1,7 @@
 package com.itm.edu.co.ProyectoPP_2026.Controllers;
 
 import com.itm.edu.co.ProyectoPP_2026.Identities.Notificacion;
+import com.itm.edu.co.ProyectoPP_2026.Services.Interface.NotificacionServiceInterface;
 import com.itm.edu.co.ProyectoPP_2026.Services.NotificacionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,9 +13,9 @@ import java.util.List;
 @RequestMapping("/notificaciones")
 public class NotificacionController {
 
-    private final NotificacionService service;
+    private final NotificacionServiceInterface service;
 
-    public NotificacionController(NotificacionService service) {
+    public NotificacionController(NotificacionServiceInterface service) {
         this.service = service;
     }
 

@@ -1,16 +1,18 @@
 package com.itm.edu.co.ProyectoPP_2026.Services;
 
 import com.itm.edu.co.ProyectoPP_2026.Identities.RepresentanteEntidad;
+import com.itm.edu.co.ProyectoPP_2026.Repositories.Interfaces.RepresentanteEntidadRepositoryInterface;
 import com.itm.edu.co.ProyectoPP_2026.Repositories.RepresentanteEntidadRepository;
+import com.itm.edu.co.ProyectoPP_2026.Services.Interface.RepresentanteEntidadServiceInterface;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class RepresentanteEntidadService {
-    private final RepresentanteEntidadRepository repository;
+public class RepresentanteEntidadService implements RepresentanteEntidadServiceInterface {
+    private final RepresentanteEntidadRepositoryInterface repository;
 
-    public RepresentanteEntidadService(RepresentanteEntidadRepository repository) {
+    public RepresentanteEntidadService(RepresentanteEntidadRepositoryInterface repository) {
         this.repository = repository;
     }
 

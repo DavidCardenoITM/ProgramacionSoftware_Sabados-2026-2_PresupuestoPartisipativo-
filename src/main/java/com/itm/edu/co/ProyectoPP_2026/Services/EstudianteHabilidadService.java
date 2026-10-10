@@ -2,16 +2,18 @@ package com.itm.edu.co.ProyectoPP_2026.Services;
 
 import com.itm.edu.co.ProyectoPP_2026.Identities.EstudianteHabilidad;
 import com.itm.edu.co.ProyectoPP_2026.Repositories.EstudianteHabilidadRepository;
+import com.itm.edu.co.ProyectoPP_2026.Repositories.Interfaces.EstudianteHabilidadRepositoryInterface;
+import com.itm.edu.co.ProyectoPP_2026.Services.Interface.EstudianteHabilidadServiceInterface;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class EstudianteHabilidadService {
+public class EstudianteHabilidadService implements EstudianteHabilidadServiceInterface {
 
-    private final EstudianteHabilidadRepository repository;
+    private final EstudianteHabilidadRepositoryInterface repository;
 
-    public EstudianteHabilidadService(EstudianteHabilidadRepository repository) {
+    public EstudianteHabilidadService(EstudianteHabilidadRepositoryInterface repository) {
         this.repository = repository;
     }
 

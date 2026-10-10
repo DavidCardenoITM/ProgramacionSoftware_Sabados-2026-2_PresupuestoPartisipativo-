@@ -1,6 +1,7 @@
 package com.itm.edu.co.ProyectoPP_2026.Controllers;
 
 import com.itm.edu.co.ProyectoPP_2026.Identities.PostulacionConvocatoria;
+import com.itm.edu.co.ProyectoPP_2026.Services.Interface.PostulacionConvocatoriaServiceinterface;
 import com.itm.edu.co.ProyectoPP_2026.Services.PostulacionConvocatoriaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,9 +13,9 @@ import java.util.List;
 @RequestMapping("/postulaciones-convocatoria")
 public class PostulacionConvocatoriaController {
 
-    private final PostulacionConvocatoriaService service;
+    private final PostulacionConvocatoriaServiceinterface service;
 
-    public PostulacionConvocatoriaController(PostulacionConvocatoriaService service) {
+    public PostulacionConvocatoriaController(PostulacionConvocatoriaServiceinterface service) {
         this.service = service;
     }
 

@@ -2,6 +2,7 @@ package com.itm.edu.co.ProyectoPP_2026.Controllers;
 
 import com.itm.edu.co.ProyectoPP_2026.Identities.EstudianteHabilidad;
 import com.itm.edu.co.ProyectoPP_2026.Services.EstudianteHabilidadService;
+import com.itm.edu.co.ProyectoPP_2026.Services.Interface.EstudianteHabilidadServiceInterface;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,9 +18,9 @@ import java.util.List;
 @RequestMapping("/estudiante-habilidad")
 public class EstudianteHabilidadController {
 
-    private final EstudianteHabilidadService service;
+    private final EstudianteHabilidadServiceInterface service;
 
-    public EstudianteHabilidadController(EstudianteHabilidadService service) {
+    public EstudianteHabilidadController(EstudianteHabilidadServiceInterface service) {
         this.service = service;
     }
 

@@ -1,16 +1,18 @@
 package com.itm.edu.co.ProyectoPP_2026.Services;
 
 import com.itm.edu.co.ProyectoPP_2026.Identities.Municipio;
+import com.itm.edu.co.ProyectoPP_2026.Repositories.Interfaces.MunicipioRepositoryInterface;
 import com.itm.edu.co.ProyectoPP_2026.Repositories.MunicipioRepository;
+import com.itm.edu.co.ProyectoPP_2026.Services.Interface.MunicipioServiceInterface;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class MunicipioService {
-    private final MunicipioRepository repository;
+public class MunicipioService implements MunicipioServiceInterface{
+    private final MunicipioRepositoryInterface repository;
 
-    public MunicipioService(MunicipioRepository repository) {
+    public MunicipioService(MunicipioRepositoryInterface repository) {
         this.repository = repository;
     }
 

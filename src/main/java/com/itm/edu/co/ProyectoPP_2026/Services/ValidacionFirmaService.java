@@ -1,17 +1,19 @@
 package com.itm.edu.co.ProyectoPP_2026.Services;
 
 import com.itm.edu.co.ProyectoPP_2026.Identities.ValidacionFirma;
+import com.itm.edu.co.ProyectoPP_2026.Repositories.Interfaces.ValidacionFirmaRepositoryInterface;
 import com.itm.edu.co.ProyectoPP_2026.Repositories.ValidacionFirmaRepository;
+import com.itm.edu.co.ProyectoPP_2026.Services.Interface.ValidacionFirmaServiceInterface;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ValidacionFirmaService {
+public class ValidacionFirmaService implements ValidacionFirmaServiceInterface {
 
-    private final ValidacionFirmaRepository repository;
+    private final ValidacionFirmaRepositoryInterface repository;
 
-    public ValidacionFirmaService(ValidacionFirmaRepository repository) {
+    public ValidacionFirmaService(ValidacionFirmaRepositoryInterface repository) {
         this.repository = repository;
     }
 

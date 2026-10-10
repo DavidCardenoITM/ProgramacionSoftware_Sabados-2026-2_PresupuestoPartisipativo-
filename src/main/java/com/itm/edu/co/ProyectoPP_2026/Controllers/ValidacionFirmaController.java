@@ -1,6 +1,7 @@
 package com.itm.edu.co.ProyectoPP_2026.Controllers;
 
 import com.itm.edu.co.ProyectoPP_2026.Identities.ValidacionFirma;
+import com.itm.edu.co.ProyectoPP_2026.Services.Interface.ValidacionFirmaServiceInterface;
 import com.itm.edu.co.ProyectoPP_2026.Services.ValidacionFirmaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,9 +13,9 @@ import java.util.List;
 @RequestMapping("/validaciones-firma")
 public class ValidacionFirmaController {
 
-    private final ValidacionFirmaService service;
+    private final ValidacionFirmaServiceInterface service;
 
-    public ValidacionFirmaController(ValidacionFirmaService service) {
+    public ValidacionFirmaController(ValidacionFirmaServiceInterface service) {
         this.service = service;
     }
 

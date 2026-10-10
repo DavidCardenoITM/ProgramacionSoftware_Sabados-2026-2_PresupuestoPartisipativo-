@@ -57,7 +57,7 @@ public class UsuariosController {
         }
         return ResponseEntity.ok(result);
     }
-
+    
     @PutMapping("/actualizar")
     public ResponseEntity<Usuarios> actualizarUsuario(@RequestBody Usuarios usuario) {
         if (usuario == null || usuario.getCorreo() == null) {

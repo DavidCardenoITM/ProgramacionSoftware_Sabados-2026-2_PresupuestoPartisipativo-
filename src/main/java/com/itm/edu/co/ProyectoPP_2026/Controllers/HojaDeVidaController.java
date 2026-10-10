@@ -2,6 +2,7 @@ package com.itm.edu.co.ProyectoPP_2026.Controllers;
 
 import com.itm.edu.co.ProyectoPP_2026.Identities.HojaDeVida;
 import com.itm.edu.co.ProyectoPP_2026.Services.HojaDeVidaService;
+import com.itm.edu.co.ProyectoPP_2026.Services.Interface.HojaDeVidaServiceInterface;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,9 +13,9 @@ import java.util.List;
 @RequestMapping("/hojas-de-vida")
 public class HojaDeVidaController {
 
-    private final HojaDeVidaService service;
+    private final HojaDeVidaServiceInterface service;
 
-    public HojaDeVidaController(HojaDeVidaService service) {
+    public HojaDeVidaController(HojaDeVidaServiceInterface service) {
         this.service = service;
     }
 
