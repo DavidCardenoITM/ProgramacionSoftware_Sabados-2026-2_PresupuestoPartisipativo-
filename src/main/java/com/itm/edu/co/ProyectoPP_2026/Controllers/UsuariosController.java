@@ -1,7 +1,7 @@
 package com.itm.edu.co.ProyectoPP_2026.Controllers;
 
 import com.itm.edu.co.ProyectoPP_2026.Identities.Usuarios;
-import com.itm.edu.co.ProyectoPP_2026.Services.UsuariosService;
+import com.itm.edu.co.ProyectoPP_2026.Interfaces.IUsuariosService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.ObjectUtils;
@@ -13,9 +13,9 @@ import java.util.List;
 @RequestMapping("/usuarios")
 public class UsuariosController implements UsuariosApi{
 
-    private final UsuariosService service;
+    private final IUsuariosService service;
 
-    public UsuariosController(UsuariosService service) {
+    public UsuariosController(IUsuariosService service) {
         this.service = service;
     }
 
@@ -65,16 +65,9 @@ public class UsuariosController implements UsuariosApi{
         }
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
- feature/interfaces-respositorys-services
-    
-    @PutMapping("/actualizar")
-    public ResponseEntity<Usuarios> actualizarUsuario(@RequestBody Usuarios usuario) {
-        if (usuario == null || usuario.getCorreo() == null) {
-
     //@PutMapping("/actualizar")
     public ResponseEntity<Usuarios> actualizarUsuario(@RequestBody Usuarios usuario){
         if(usuario == null || usuario.getCorreo() == null){
- develop
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         Usuarios result = service.actualizarUsuario(usuario);
