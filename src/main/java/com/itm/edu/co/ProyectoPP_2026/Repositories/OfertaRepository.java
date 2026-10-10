@@ -1,96 +1,93 @@
 package com.itm.edu.co.ProyectoPP_2026.Repositories;
 
 import com.itm.edu.co.ProyectoPP_2026.Identities.OfertaLaborSocial;
+import com.itm.edu.co.ProyectoPP_2026.Repositories.Interfaces.OfertaRepositoryInterface;
+import com.itm.edu.co.ProyectoPP_2026.Utilities.Conexion;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class OfertaRepository {
+public class OfertaRepository implements OfertaRepositoryInterface {
 
     @Autowired
     private OfertaRepositoryDAOHelper helper;
 
-    @Value("${spring.datasource.url:jdbc:mysql://localhost:3306/presupuesto_participativo}")
-    private String dbUrl;
-
-    @Value("${spring.datasource.username:root}")
-    private String dbUser;
-
-    @Value("${spring.datasource.password:}")
-    private String dbPassword;
-
-    private Connection obtenerConexion() throws SQLException {
-        return DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+    private OfertaLaborSocial mapear(ResultSet rs) throws SQLException {
+        return OfertaLaborSocial.builder()
+                .id(rs.getInt("id"))
+                .idEntidad(rs.getInt("id_entidad"))
+                .titulo(rs.getString("titulo"))
+                .descripcion(rs.getString("descripcion"))
+                .cuposDisponibles(rs.getInt("cupos_disponibles"))
+                .horasOfrecidas(rs.getInt("horas_ofrecidas"))
+                .horario(rs.getString("horario"))
+                .ubicacion(rs.getString("ubicacion"))
+                .estado(rs.getString("estado"))
+                .build();
     }
 
+    @Override
     public List<OfertaLaborSocial> listarOfertas() {
         List<OfertaLaborSocial> result = new ArrayList<>();
-        try (Connection connection = obtenerConexion();
-             PreparedStatement ps = connection.prepareStatement(helper.listarOfertas());
-             ResultSet rs = ps.executeQuery()) {
-
+        Conexion conexion = new Conexion();
+        Connection connection = conexion.obtenerConexion();
+        try {
+            PreparedStatement ps = connection.prepareStatement(helper.listarOfertas());
+            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                OfertaLaborSocial oferta = OfertaLaborSocial.builder()
-                        .id(rs.getInt("id"))
-                        .idEntidad(rs.getInt("id_entidad"))
-                        .titulo(rs.getString("titulo"))
-                        .descripcion(rs.getString("descripcion"))
-                        .cuposDisponibles(rs.getInt("cupos_disponibles"))
-                        .horasOfrecidas(rs.getInt("horas_ofrecidas"))
-                        .horario(rs.getString("horario"))
-                        .ubicacion(rs.getString("ubicacion"))
-                        .estado(rs.getString("estado"))
-                        .build();
-                result.add(oferta);
-            }
-        } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
-            return new ArrayList<>();
-        }
-        return result;
-    }
-
-    public OfertaLaborSocial buscarPorId(Integer id) {
-        OfertaLaborSocial result = null;
-        try (Connection connection = obtenerConexion();
-             PreparedStatement ps = connection.prepareStatement(helper.buscarPorId())) {
-
-            ps.setInt(1, id);
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    result = OfertaLaborSocial.builder()
-                            .id(rs.getInt("id"))
-                            .idEntidad(rs.getInt("id_entidad"))
-                            .titulo(rs.getString("titulo"))
-                            .descripcion(rs.getString("descripcion"))
-                            .cuposDisponibles(rs.getInt("cupos_disponibles"))
-                            .horasOfrecidas(rs.getInt("horas_ofrecidas"))
-                            .horario(rs.getString("horario"))
-                            .ubicacion(rs.getString("ubicacion"))
-                            .estado(rs.getString("estado"))
-                            .build();
-                }
+                result.add(mapear(rs));
             }
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
             return null;
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception connectionException) {
+            }
         }
         return result;
     }
 
-    public Boolean insertarOferta(OfertaLaborSocial oferta) {
-        try (Connection connection = obtenerConexion();
-             PreparedStatement ps = connection.prepareStatement(helper.insertarOferta())) {
+    @Override
+    public OfertaLaborSocial buscarPorId(Integer id) {
+        Conexion conexion = new Conexion();
+        Connection connection = conexion.obtenerConexion();
+        OfertaLaborSocial result = OfertaLaborSocial.builder().build();
+        try {
+            PreparedStatement ps = connection.prepareStatement(helper.buscarPorId());
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                result = mapear(rs);
+            }
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+            return null;
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception connectionException) {
+            }
+        }
+        return result;
+    }
 
+    @Override
+    public OfertaLaborSocial insertarOferta(OfertaLaborSocial oferta) {
+        Conexion conexion = new Conexion();
+        Connection connection = conexion.obtenerConexion();
+        OfertaLaborSocial result = OfertaLaborSocial.builder().build();
+        try {
+            PreparedStatement ps = connection.prepareStatement(helper.insertarOferta(), Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, oferta.getIdEntidad());
             ps.setString(2, oferta.getTitulo());
             ps.setString(3, oferta.getDescripcion());
@@ -100,17 +97,30 @@ public class OfertaRepository {
             ps.setString(7, oferta.getUbicacion());
             ps.setString(8, oferta.getEstado());
             ps.executeUpdate();
-            return true;
+            ResultSet keys = ps.getGeneratedKeys();
+            if (keys.next()) {
+                result = buscarPorId(keys.getInt(1));
+            } else {
+                result = oferta;
+            }
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
-            return false;
+            return null;
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception connectionException) {
+            }
         }
+        return result;
     }
 
+    @Override
     public OfertaLaborSocial actualizarOferta(OfertaLaborSocial oferta) {
-        try (Connection connection = obtenerConexion();
-             PreparedStatement ps = connection.prepareStatement(helper.actualizarOferta())) {
-
+        Conexion conexion = new Conexion();
+        Connection connection = conexion.obtenerConexion();
+        try {
+            PreparedStatement ps = connection.prepareStatement(helper.actualizarOferta());
             ps.setString(1, oferta.getTitulo());
             ps.setString(2, oferta.getDescripcion());
             ps.setInt(3, oferta.getCuposDisponibles());
@@ -120,23 +130,35 @@ public class OfertaRepository {
             ps.setString(7, oferta.getEstado());
             ps.setInt(8, oferta.getId());
             ps.executeUpdate();
-            return oferta;
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
             return null;
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception connectionException) {
+            }
         }
+        return oferta;
     }
 
+    @Override
     public Boolean eliminarOferta(Integer id) {
-        try (Connection connection = obtenerConexion();
-             PreparedStatement ps = connection.prepareStatement(helper.eliminarOferta())) {
-
+        Conexion conexion = new Conexion();
+        Connection connection = conexion.obtenerConexion();
+        try {
+            PreparedStatement ps = connection.prepareStatement(helper.eliminarOferta());
             ps.setInt(1, id);
             ps.executeUpdate();
-            return true;
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
             return false;
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception connectionException) {
+            }
         }
+        return true;
     }
 }
