@@ -14,10 +14,13 @@ public class DocumentationConfiguration {
         return new OpenAPI()
                 .info(
                         new Info()
-                                .title("API de Presupuesto Participativo")
-                                .version("1.0.0")
+                                .title("API de Labor Social")
+                                .version("2.0.0")
                                 .description(
-                                        "API para la gestión de ofertas, postulaciones y registros de horas de labor social."
+                                        "API para la gestion de cuentas, municipios, convocatorias, ofertas, "
+                                                + "postulaciones, horas de labor social y certificados. "
+                                                + "Los endpoints de la version /api/v1 reciben el usuario que ejecuta "
+                                                + "la accion en el encabezado X-Usuario-Id."
                                 )
                                 .contact(
                                         new Contact()

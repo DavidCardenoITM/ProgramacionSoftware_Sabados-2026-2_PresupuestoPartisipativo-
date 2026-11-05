@@ -1,15 +1,37 @@
 package com.itm.edu.co.ProyectoPP_2026.Identities;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "postulacion_oferta")
 public class PostulacionOferta {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+
+    @Column(name = "id_estudiante", nullable = false)
     private Long idEstudiante;
+
+    @Column(name = "id_oferta", nullable = false)
     private Long idOferta;
+
+    @Column(name = "fecha_postulacion", nullable = false)
     private LocalDate fechaPostulacion;
+
+    @Column(name = "estado", nullable = false, length = 30)
     private String estado;
 
-    public PostulacionOferta() {}
+    public PostulacionOferta() {
+    }
 
     public PostulacionOferta(Long id, Long idEstudiante, Long idOferta, LocalDate fechaPostulacion, String estado) {
         this.id = id;
@@ -19,18 +41,43 @@ public class PostulacionOferta {
         this.estado = estado;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public Long getIdEstudiante() { return idEstudiante; }
-    public void setIdEstudiante(Long idEstudiante) { this.idEstudiante = idEstudiante; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public Long getIdOferta() { return idOferta; }
-    public void setIdOferta(Long idOferta) { this.idOferta = idOferta; }
+    public Long getIdEstudiante() {
+        return idEstudiante;
+    }
 
-    public LocalDate getFechaPostulacion() { return fechaPostulacion; }
-    public void setFechaPostulacion(LocalDate fechaPostulacion) { this.fechaPostulacion = fechaPostulacion; }
+    public void setIdEstudiante(Long idEstudiante) {
+        this.idEstudiante = idEstudiante;
+    }
 
-    public String getEstado() { return estado; }
-    public void setEstado(String estado) { this.estado = estado; }
+    public Long getIdOferta() {
+        return idOferta;
+    }
+
+    public void setIdOferta(Long idOferta) {
+        this.idOferta = idOferta;
+    }
+
+    public LocalDate getFechaPostulacion() {
+        return fechaPostulacion;
+    }
+
+    public void setFechaPostulacion(LocalDate fechaPostulacion) {
+        this.fechaPostulacion = fechaPostulacion;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 }

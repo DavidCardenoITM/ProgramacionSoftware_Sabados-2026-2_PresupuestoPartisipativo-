@@ -1,6 +1,17 @@
 package com.itm.edu.co.ProyectoPP_2026.Identities;
 
-import lombok.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
@@ -10,10 +21,24 @@ import java.time.LocalDate;
 @Builder
 @Getter
 @Setter
+@Entity
+@Table(name = "hoja_de_vida")
 public class HojaDeVida {
-    Integer id;
-    Integer idEstudiante;
-    String resumen;
-    String fotoUrl;
-    LocalDate fechaActualizacion;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
+
+    @Column(name = "id_estudiante", nullable = false, unique = true)
+    private Integer idEstudiante;
+
+    @Column(name = "resumen", columnDefinition = "text")
+    private String resumen;
+
+    @Column(name = "foto_url", length = 255)
+    private String fotoUrl;
+
+    @Column(name = "fecha_actualizacion")
+    private LocalDate fechaActualizacion;
 }

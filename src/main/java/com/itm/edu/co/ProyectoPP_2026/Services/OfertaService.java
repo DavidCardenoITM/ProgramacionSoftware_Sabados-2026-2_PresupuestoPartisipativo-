@@ -79,7 +79,7 @@ public class OfertaService implements OfertaServiceInterface {
             throw new IllegalArgumentException("Estado invalido. Use: Abierta, Cerrada");
         }
         if (oferta.getFechaInicio() != null && oferta.getFechaFin() != null
-                && oferta.getFechaInicio().after(oferta.getFechaFin())) {
+                && oferta.getFechaInicio().isAfter(oferta.getFechaFin())) {
             throw new IllegalArgumentException("La fechaInicio no puede ser posterior a fechaFin");
         }
     }
