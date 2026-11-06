@@ -2,7 +2,7 @@ package com.itm.edu.co.ProyectoPP_2026.Services;
 
 import com.itm.edu.co.ProyectoPP_2026.Identities.Administrador;
 import com.itm.edu.co.ProyectoPP_2026.Interfaces.IAdministradorService;
-import com.itm.edu.co.ProyectoPP_2026.Repositories.AdministradorRepository;
+import com.itm.edu.co.ProyectoPP_2026.Repositories.Interfaces.AdministradorRepositoryInterface;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,9 +10,9 @@ import java.util.List;
 @Service
 public class AdministradorService implements IAdministradorService {
 
-    private final AdministradorRepository repository;
+    private final AdministradorRepositoryInterface repository;
 
-    public AdministradorService(AdministradorRepository repository) {
+    public AdministradorService(AdministradorRepositoryInterface repository) {
         this.repository = repository;
     }
 
